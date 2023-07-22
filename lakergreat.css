@@ -1,0 +1,52 @@
+.lakergreat-list {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(200px, 1fr));
+    grid-gap: 1px;
+    list-style: none;
+  }
+  
+  .lakergreat {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 250px; 
+  }
+  
+  
+  .lakergreat img {
+    width: 150px; 
+    height: 200px;
+    object-fit: cover; 
+    transition: opacity 0.3s;
+  }
+   /* add a hover effect */
+  .lakergreat:hover img {
+    opacity: 0.5;
+  }
+  
+  .lakergreatname {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 8px;
+    margin: 0;
+   
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #fdb927;
+    -webkit-text-stroke: 1px #552583;
+  }
+  
+  
+  .lakergreat:hover .lakergreatname {
+    opacity: 1;
+  }

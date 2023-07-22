@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Vando's Vault</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+  <!-- Your custom CSS second -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <header> 
+
+      <nav>
+          <ul>
+              <img src = 'LakersImages/LakersLogo.svg'>
+              <li><a href= 'index.html'>Home</a></li>
+              <li><a href= 'currentroster.html'> Current Roster</a></li>
+              <li><a href= 'greatestplayers.html' > Greatest Players</a></li>
+              <li> <a href = 'Vando.html' > Data Analysis </a></li>
+          </ul>
+      </nav>
+  </header>
+
+  <div class="vandobackground">
+    <div class="article-introduction">
+      <h1>"Vando’s Vault"</h1>
+      <h3>The All-Defensive Team Potential of Jarred Vanderbilt</h2>
+      <div class = "paragraph1container">
+      <p>
+        If I had to describe Jarred Vanderbilts playstyle in a breath, this is what I’d say:
+      </p>
+        <p> <em> Ball-swipes, lane jumping, and pure hustle. </em></p>
+      </p>
+      <p>
+        Lakers fans who closely followed the team last season are aware at this point that Jarred Vanderbilt is the definition of a game changer. His playstyle is disruptive- aided by his 6’9 frame and 7’1 wingspan, JV uses his physical gifts (and relentless nature) to fluidly switch between all positions, harassing opposing players at every level. He’s been a defensive spark plug throughout his entire career and someone who has demonstrated that he’s not only capable- but willing to embrace all challenges that might be thrown his way. In fact, he’ll tell you that himself:
+      </p>
+      <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Jarred Vanderbilt on his defense on Luka Doncic: &quot;I like that challenge every single night, being able to guard the best player 1 through 5. That&#39;s my value and my impact on this team.&quot;</p>&mdash; Lakers Daily (@LakersDailyCom) <a href="https://twitter.com/LakersDailyCom/status/1629996350241935361?ref_src=twsrc%5Etfw">February 27, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+      <p> Vando’s skillset and overall approach he takes towards the game is something every coach dreams of, he’s a player who gives teeth to a defense and whose motor only has one setting: “Full Throttle.”</p>
+      <p> Jarred’s  “grinder” attitude is a key ingredient to the formulation of any championship roster, and is a shared-trait amongst the league’s greatest defenders. Though time and time again Jarred has shown the ability to lockdown a team’s star player (works cited: Luka, Steph, Anthony Edwards), he has yet to gain popular reverence as one of the league’s most formidable defenders. It seems that even though Vando’s Vault has been able to confine some of the league’s top players, he has yet to apprehend the minds of All-Defensive team voters.</p>
+      <p> 
+        In this article, I will attempt to place arguments against JV’s status as an elite defender behind bars by performing a by-the-numbers investigation of Vanderbilts advanced-stats in juxtaposition to the stats of the best defenders in league-history.
+        </p>
+        <p> How far away is JV from being considered for an all-defensive team? Does he already meet the criteria? Let’s find out.</p>
+    </div>
+    <h2 id="birds-eye-view">Birds Eye View:</h2>
+    <div class = "paragraph2container">
+      <p>To start this analysis off, we’re going to observe some data visualizations. The data you’re going to see is based off statistical information gathered from every player that has been selected to an All-Defensive team (1st or 2nd) since 1978. </p>
+      <p>The data here was acquired via scripts I programmed in Python to scrape data from nba.com (names of players who have been selected to an All-Defensive team) and basketballreference.com (player statistics). This data was then automatically inserted into an SQL table of which I used to query information and create graphical displays. </p>
+      <p>You can browse the SQL table (nba_defensive_teams.db) and the webscraping code <a href="https://github.com/yungblores/lakersminiproject.git" target="_blank">here</a>.</p>
+      <h6 id ="note"> <strong>NOTE: The stats inserted into the table were extracted from the year in which a player was selected to an All-Defensive team. This data does not take career averages. For example, if a player was selected to an all-defensive team in 2020, we would insert their stats from the year 2020. </strong></h6>
+      <p> The initial phase of this analysis is going to overview specific statistical distributions for all the players who have made an all-defensive team. For the purposes of this endeavor, I chose to focus on the advanced stats I felt to be most indicative of defensive aptitude. The stats I chose were: <strong>Defensive_BPM, BPM, STL_PCT, BLK_PCT, DWS, WS, and WS_PER_48.</strong>  If you aren’t familiar with the exact details of these statistics, they are defined below:</p>
+      <ul> 
+        <li class="list-item"><strong>Defensive_BPM:</strong> A basketball box score-based metric that estimates a basketball player’s defensive contribution to the team when that player is on the court, per 100 possessions. League average is 0.0.</li>
+        <li class="list-item"><strong>BPM:</strong> A basketball box score-based metric that estimates a basketball player’s total contribution to the team when that player is on the court, per 100 possessions. League average is 0.0.</li>
+        <li class="list-item"><strong>STL_PCT:</strong> The percentage of opponent possessions that end with a steal by the player while he is on the floor.</li>
+        <li class="list-item"><strong>BLK_PCT:</strong> An estimate of the percentage of opponent two-point field goal attempts blocked by the player while he was on the floor.</li>
+        <li class="list-item"><strong>DWS:</strong> Defensive Win Shares; an estimate of the number of wins contributed by a player due to his defense.</li>
+        <li class="list-item"><strong>WS:</strong> Win Shares; an estimate of the number of wins contributed by a player due to his overall performance.</li>
+        <li class="list-item"><strong>WS_PER_48:</strong> Win Shares Per 48 minutes; an estimate of the number of wins contributed by a player per 48 minutes (league average is approximately .100).</li>
+    </ul>
+    
+      <p id ="afterstatlist">We’re going to display each of these distributions through a “box-and-whisker” plot so at to comprehensively grasp where different players stats rank in perspective to one another. The box-and-whisker plot demonstrates key-statistics such as percentiles, minimum/maximum values, outliers, and the median. These different plots are displayed in the interactive carousel below:</p>
+    </div>
+     <!-- Carousel  1-->
+    <div class = "carousel-container">
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <iframe src="birdseyeplots/plot1.html" width="100%" height="500"></iframe>
+          </div>
+          <div class="carousel-item">
+            <iframe src="birdseyeplots/plot3.html" width="100%" height="500"></iframe>
+          </div>
+          <div class="carousel-item">
+            <iframe src="birdseyeplots/plot4.html" width="100%" height="500"></iframe>
+          </div>
+          <div class="carousel-item">
+            <iframe src="birdseyeplots/plot5.html" width="100%" height="500"></iframe>
+          </div>
+          <div class="carousel-item">
+            <iframe src="birdseyeplots/plot6.html" width="100%" height="500"></iframe>
+          </div>
+          <div class="carousel-item">
+            <iframe src="birdseyeplots/plot7.html" width="100%" height="500"></iframe>
+          </div>
+          <div class="carousel-item">
+            <iframe src="birdseyeplots/plot8.html" width="100%" height="500"></iframe>
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+    <h2 id="into-the-woods">Into the Woods:</h2>
+  <p>For the second part of this analysis, we’re going to see how Jarred Vanderbilt compares to some of the NBA’s greatest defensive players of all time. To do so, we’re going to first view where Vanderbilt’s career averages lie within the dataset. After this, we’re going to see how his career highs size up in these figures. The purpose of this is to demonstrate not only Jarred’s current defensive “standard” but also his defensive potential. </p>    <!-- Carousel  2-->
+  <p> The reason why I’m not focusing solely on averages is because I think it’s important to understand how Jarred’s career-peaks measure up to the dataset we collected. Given that the data being assessed is a collection of statistics that were gathered from the greatest defensive players of all time, it’s safe to assume that most of these data-points are snapshots of different players performances throughout their defensive-primes. The comparison of Jarred Vanderbilt’s career highs is simply an attempt to level the playing field.</p>
+  <h5 id = "rankingforavg"> Ranking for Vanderbilt’s<em> average</em> stats:</h5>
+    <div class = "carousel-container">
+      <div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <iframe src="vandoaverageplots/average1.html" width="100%" height="500"></iframe>
+          </div>
+          <div class="carousel-item">
+            <iframe src="vandoaverageplots/average2.html" width="100%" height="500"></iframe>
+          </div>
+          <div class="carousel-item">
+            <iframe src="vandoaverageplots/average3.html" width="100%" height="500"></iframe>
+          </div>
+          <div class="carousel-item">
+            <iframe src="vandoaverageplots/average4.html" width="100%" height="500"></iframe>
+          </div>
+          <div class="carousel-item">
+            <iframe src="vandoaverageplots/average5.html" width="100%" height="500"></iframe>
+          </div>
+          <div class="carousel-item">
+            <iframe src="vandoaverageplots/average6.html" width="100%" height="500"></iframe>
+          </div>
+          <div class="carousel-item">
+            <iframe src="vandoaverageplots/average7.html" width="100%" height="500"></iframe>
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators2" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators2" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+    <h5 id ="rankingformax"> Ranking for Vanderbilt’s<em> max</em> stats:</h5>
+    <!-- Carousel  3-->
+    <div class = "carousel-container">
+      <div id="carouselExampleIndicators3" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <iframe src="vandomaxplots/max1.html" width="100%" height="500"></iframe>
+          </div>
+          <div class="carousel-item">
+            <iframe src="vandomaxplots/max2.html" width="100%" height="500"></iframe>
+          </div>
+          <div class="carousel-item">
+            <iframe src="vandomaxplots/max3.html" width="100%" height="500"></iframe>
+          </div>
+          <div class="carousel-item">
+            <iframe src="vandomaxplots/max4.html" width="100%" height="500"></iframe>
+          </div>
+          <div class="carousel-item">
+            <iframe src="vandomaxplots/max5.html" width="100%" height="500"></iframe>
+          </div>
+          <div class="carousel-item">
+            <iframe src="vandomaxplots/max6.html" width="100%" height="500"></iframe>
+          </div>
+          <div class="carousel-item">
+            <iframe src="vandomaxplots/max7.html" width="100%" height="500"></iframe>
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators3" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators3" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+    <h2 id = "key-takeaways">Key Takeaways: </h2>
+    <ul>
+      <li> The highest individual percentile ranking from Jarred Vanderbilts average stats is  <strong>65.14161220043573</strong>, STL_PCT.</li>
+      <li>Jarred Vanderbilt’s career averages grant him an average percentile ranking of <strong>34.48143934915063</strong>, across all categories.</li>
+     
+      <li>The highest individual percentile ranking from Jarred Vanderbilts career high stats is <strong>74.7276688453159</strong> , STL_PCT. </li>
+      <li>Jarred Vanderbilt’s career highs grant him an average percentile ranking of <strong>44.01085519117885</strong>, across all categories.</li>
+    </ul>
+    <h2 id = "conclusion"> Conclusion:</h2>
+    <p>Looking over the stats, it’s quite evident that Jarred Vanderbilt’s defensive metrics are already on par with many of the greatest defenders in NBA history. Nearly all his aggregate statistics fall between the second and third IQR of the plots that were constructed, which is a testament to JV’s defensive versatility. This point is particularly underscored by his above-average percentile rankings in both STL_PCT and BLK_PCT, stats that are typically skewed by guards and bigs, respectively. As a forward, the fact that he is ultra-competitive statistically in both categories is highly respectable. </p>
+    <p>Over the course of his young career, JV has already constructed a body of work that has allowed his career-averages to be in lockstep with the NBA defensive greats. However, something I found to be particularly noteworthy is the 10% increase in Vanderbilt’s average percentile ranking when being assessed by his career highs. I think that this statistical jump not only exhibits the degrees of Jarred’s capabilities, but more specifically the potential he may have yet to achieve. </p>
+    <p>Throughout his career, Jarred has been tasked with limited responsibilities in the NBA. He’s broadly been used as an energy-providing role-player off the bench, which has mitigated his opportunities to fully exercise his uber-effective defensive expertise. It must be acknowledged that this is not merely a fault that falls upon his coaches’ shoulders, but also can be attributed to Jarred’s woes on the offensive end. His inconsistent jump shot, and restricted playmaking ability leads to spacing issues on the offensive end, which often outweighs any defensive benefit he might be able to provide. This dynamic was most recently spotlighted throughout this last playoff stretch. In the Denver series, the Nuggets were a team that routinely chose to sag-off of Jarred while he was on the perimeter, daring him to take a shot. This led to an ineffective and predictable offense for the Lakers while he was on the floor, as the Nuggets were essentially playing 5-on-4 basketball when playing defense. It goes without saying that Jamal Murray was nearly unstoppable in that series, and that the Lakers would’ve strongly benefited in having a defensive specialist like Vanderbilt to guard him for 23+ minutes a night. in the playoffs, every minute of a game is critical to the outcome of the match- if an opposing team identifies another team’s weakness, the vulnerability will be exploited. Jarred’s offensive deficiencies fit that bill.</p>
+    <p>Obviously, I believe that Jarred Vanderbilt is an incredible defender, and the stats would back that assertion. Even if Jarred decided to progress through the rest of his career without evolving his playstyle, I’m confident that he would still be a desirable rotation-piece for a plethora of winning teams. But if you ask me, I think that Vando’s ceiling far exceeds his current floor. If he spends his time locking-in a reliable jump shot, there’s no doubt in my mind that Jarred would be a heavy-usage player on a nightly basis. In the end, the only person who might be able to truly unlock “Vando’s Vault” isn’t some offensive scorer- but Jarred Jakobi Vanderbilt himself. </p>
+    <div class="center-image">
+      <img id="hekickedourass" src="LakersImages/VandoQuote.jpg" alt="VandoComment">
+  </div>
+  
+  </div>
+  
+  
+
+  </div>
+ 
+  
+  <script src="javascript.js"></script>
+  
+
+
+</body>
+</html>
