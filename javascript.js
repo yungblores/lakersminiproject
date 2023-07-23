@@ -219,8 +219,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-
-  // This script should be included at the end of your body tag or in a separate .js file.
+// Open player's wikipedia page in a new tab
   document.addEventListener("DOMContentLoaded", function(){
     let playerElements = document.getElementsByClassName("lakergreat");
   
