@@ -220,6 +220,20 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 
+  // This script should be included at the end of your body tag or in a separate .js file.
+  document.addEventListener("DOMContentLoaded", function(){
+    let playerElements = document.getElementsByClassName("lakergreat");
+  
+    for(let i = 0; i < playerElements.length; i++){
+      playerElements[i].addEventListener("click", function(){
+        window.open(this.getAttribute('data-url'), "_blank");
+      });
+    }
+  });
+  
+
+
+
   // Carousel handling of google chrome
   window.onload = function() {
     const iframes = document.querySelectorAll('iframe');

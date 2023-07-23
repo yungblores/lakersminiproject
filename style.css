@@ -27,7 +27,7 @@ header {
   position: fixed;
   align-items: center;
   transition: all 0.5s ease;
-  width: 100%;
+  width: 100vw;
   /* make the header responsive */
   z-index: 1;
   overflow: auto;
@@ -54,16 +54,16 @@ header {
 header li {
   display: flex;
   align-items: center;
-  margin-right: 10px;
 }
 
 
 
 header li a {
   text-decoration: none;
-  padding: 10px; 
+  padding: 5px; 
   font-family: 'Roboto', sans-serif;
-  font-size: 30px;
+  font-size: 20px;
+  white-space: nowrap;
   align-items: right;
   font-weight: bold;
   color: #fdb927;
@@ -130,7 +130,34 @@ header li a:hover {
 .lakergradientbackground .landingimage img {
   z-index: 1;
   width: 100%;
-  height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
+}
+
+/* For devices smaller than 600px */
+@media (max-width: 100%) {
+  .lakergradientbackground .landingimage img {
+    min-height: 50vh; /* Adjust as needed */
+  }
+}
+
+/* For devices smaller than 400px */
+@media (max-width: 100%) {
+  .lakergradientbackground .landingimage img {
+    min-height: 30vh; /* Adjust as needed */
+  }
+}
+
+@media (max-width: 100%) {
+  .lakergradientbackground  {
+    min-height: 50vh; /* Adjust as needed */
+  }
+}
+
+.homecontainer .smlanding{
+  position: relative;
+  height: 100%;
+  width: 100%;
   overflow: hidden;
 }
 
@@ -165,12 +192,7 @@ header li a:hover {
 }
 
 
-.homecontainer .smlanding{
-  position: relative;
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-}
+
 
 .homecontainer .intro-box{
   align-self: center ;
