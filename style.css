@@ -122,6 +122,7 @@ header li a:hover {
   width: 100vw;
   min-height: 100vh; /* The element will take at least the full height of the viewport */
   background: linear-gradient(to bottom right, #552583, #fdb927);
+  overflow: hidden;
 }
 
 
@@ -153,6 +154,8 @@ header li a:hover {
     min-height: 50vh; /* Adjust as needed */
   }
 }
+
+
 
 .homecontainer .smlanding{
   position: relative;
@@ -193,7 +196,6 @@ header li a:hover {
 
 
 
-
 .homecontainer .intro-box{
   align-self: center ;
   position: absolute;
@@ -216,6 +218,24 @@ margin-bottom: 10px;
 text-indent: 20px;
 overflow: sroll;
 }
+
+#image-track > .image{
+  width: 100vmin;
+  height: 56vmin;
+  object-fit: cover;
+  object-position: 100% 50%;
+}
+
+#image-track{
+  display: flex;
+  gap: 4vmin;
+  overflow-x: hidden; /* prevent overflow */
+  cursor: grab; /* indicate that the image can be grabbed */
+}
+
+
+
+
 
 .row {
   display: flex;
@@ -519,6 +539,7 @@ tr img {
   transition: background-color 0.3s ease, transform 0.3s ease;
   background-color: rgba(253, 185, 39);
   transform:translateY(-10px);
+  cursor: pointer;
 }
 
 .lakergreat:active {

@@ -15,12 +15,76 @@ function checkScrollAndPath() {
     header.style.backgroundColor = "rgba(85, 37, 131, 0.0)";
   }
 }
-
 // Attach the function to the scroll event
 window.addEventListener("scroll", checkScrollAndPath);
-
 // Run the function when the page loads
 window.addEventListener("load", checkScrollAndPath);
+
+
+
+
+//Javascript for image slider ON INDEX.HTML
+
+document.addEventListener("DOMContentLoaded", function(){
+  if(window.location.pathname == "/index.html" || window.location.pathname == "/") {
+      let slider = document.getElementById("image-track");
+  
+      if(slider) {
+          // Slider functionality
+          let isDown = false;
+          let startX;
+          let scrollLeft;
+
+          slider.addEventListener('mousedown', (e) => {
+            isDown = true;
+            slider.style.cursor = 'grabbing';
+            startX = e.pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+          });
+
+          window.onmousemove = function(e) {
+              if(!isDown) return;
+              e.preventDefault();
+              const x = e.pageX - slider.offsetLeft;
+              const walk = (x - startX) * 3; // scroll-fast
+              slider.scrollLeft = scrollLeft - walk;
+          };
+
+          slider.addEventListener('mouseleave', () => {
+            isDown = false;
+            slider.style.cursor = 'grab';
+          });
+
+          slider.addEventListener('mouseup', () => {
+            isDown = false;
+            slider.style.cursor = 'grab';
+          });
+
+          // Mouse wheel scrolling
+          let speed = 100; // change this to adjust the scrolling speed
+
+          slider.addEventListener("wheel", function(e) {
+            e.preventDefault();
+            this.scrollLeft += e.deltaY / speed;
+          }, { passive: false });
+  
+          // Click event to navigate to data-url
+          const trackItems = slider.getElementsByClassName('image-track-item');
+
+          for(let i=0; i<trackItems.length; i++) {
+              trackItems[i].addEventListener("click", function(){
+                  window.location.href = this.dataset.url;
+              });
+          }
+      }
+  }
+});
+
+
+
+
+
+
 
 
 
