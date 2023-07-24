@@ -28,7 +28,7 @@ window.addEventListener("load", checkScrollAndPath);
 document.addEventListener("DOMContentLoaded", function(){
   if(window.location.pathname == "/index.html" || window.location.pathname == "/") {
       let slider = document.getElementById("image-track");
-  
+
       if(slider) {
           // Slider functionality
           let isDown = false;
@@ -52,22 +52,42 @@ document.addEventListener("DOMContentLoaded", function(){
 
           slider.addEventListener('mouseleave', () => {
             isDown = false;
-            slider.style.cursor = 'grab';
+            slider.style.cursor = 'pointer';
           });
 
           slider.addEventListener('mouseup', () => {
             isDown = false;
-            slider.style.cursor = 'grab';
+            slider.style.cursor = 'pointer';
+          });
+
+          // Touch events for mobile
+          slider.addEventListener('touchstart', function(e){
+              isDown = true;
+              startX = e.touches[0].pageX - slider.offsetLeft;
+              scrollLeft = slider.scrollLeft;
+          });
+
+          slider.addEventListener('touchend', function(){
+              isDown = false;
+          });
+
+          slider.addEventListener('touchmove', function(e){
+              if(!isDown) return;
+              e.preventDefault();
+              const x = e.touches[0].pageX - slider.offsetLeft;
+              const walk = (x - startX) * 3;
+              slider.scrollLeft = scrollLeft - walk;
           });
 
           // Mouse wheel scrolling
-          let speed = 100; // change this to adjust the scrolling speed
+          let speed = 50; // change this to adjust the scrolling speed
 
           slider.addEventListener("wheel", function(e) {
             e.preventDefault();
-            this.scrollLeft += e.deltaY / speed;
+            // Scroll direction is calculated based on the sign of e.deltaY
+            this.scrollLeft += Math.sign(e.deltaY) * speed;
           }, { passive: false });
-  
+
           // Click event to navigate to data-url
           const trackItems = slider.getElementsByClassName('image-track-item');
 
@@ -79,6 +99,17 @@ document.addEventListener("DOMContentLoaded", function(){
       }
   }
 });
+
+
+
+
+
+
+
+
+
+
+
 
 
 
