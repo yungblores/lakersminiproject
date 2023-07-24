@@ -10,7 +10,6 @@ def create_database():
     # Drop the table if it already exists
     c.execute('DROP TABLE IF EXISTS Players;')
 
-    # Now we can create the table
     c.execute('''
     CREATE TABLE Players(
     Name TEXT,
